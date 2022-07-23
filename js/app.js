@@ -52,4 +52,13 @@ function game(){
         console.log(playRound());
     }
 
+    if (playerPoints > computerPoints){
+        return "The Player wins"
+    } else if(playerPoints<computerPoints){
+        return "The Computer wins"
+    } else if(playerPoints == computerPoints){
+        return "Tie"
+    }
+    playerPoints = 0;
+    computerPoints = 0;
 }
