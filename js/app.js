@@ -9,3 +9,11 @@ function getPlayerChoice(){
     let playerSelection = prompt('Escribe Piedra, papel o tijeras').toLowerCase();
     return playerSelection;
 }
+
+function playRound(){
+    const player = getPlayerChoice()
+    const computer = getComputerChoice()
+    console.log(player,computer)
+    return
+}
+
