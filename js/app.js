@@ -19,7 +19,13 @@ function playRound(){
     const computerSelection = getComputerChoice();
     
     if(playerSelection == "piedra" && computerSelection == "piedra"){
-        return(`Empate! la computadora ha seleccionado ${computerSelection} y el jugador ha seleccionado ${playerSelection} \n Computadora ${computerPoints} Jugador ${playerPoints}`);
+
+        return(
+        `Empate! la computadora ha seleccionado ${computerSelection}
+        y el jugador ha seleccionado ${playerSelection} 
+        \n Computadora ${computerPoints} Jugador ${playerPoints}
+        `);
+
     } else if(playerSelection == "piedra" && computerSelection == "tijeras"){
         playerPoints=+1;
         return(`Gana el jugador! la computadora ha seleccionado ${computerSelection} y el jugador ha seleccionado ${playerSelection} \n Computadora ${computerPoints} Jugador ${playerPoints}`);
