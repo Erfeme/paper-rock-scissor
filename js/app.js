@@ -8,17 +8,15 @@ function getComputerChoice(){
     return items[seleccion]
 }
 
-function getPlayerChoice(){
-    let playerSelection = prompt('Escribe Piedra, papel o tijeras').toLowerCase();
-    return playerSelection;
-}
+function playRound(selection){
 
-function playRound(){
+    const playerSelection = selection.target.innerText;
 
-    const playerSelection = getPlayerChoice();
+    console.log(playerSelection);
+    
     const computerSelection = getComputerChoice();
     
-    if(playerSelection == "piedra" && computerSelection == "piedra"){
+    if(playerSelection == "Piedra" && computerSelection == "piedra"){
 
         return(
         `Empate! la computadora ha seleccionado ${computerSelection}
@@ -53,11 +51,6 @@ function playRound(){
 
 function game(){
 
-    
-    for (let i = 0; i < 5; i++){
-        console.log(playRound());
-    }
-
     if (playerPoints > computerPoints){
         return "The Player wins";
     } else if(playerPoints<computerPoints){
@@ -68,3 +61,10 @@ function game(){
     playerPoints = 0;
     computerPoints = 0;
 }
+
+const button = document.querySelectorAll('button');
+
+button.forEach(button => addEventListener('click',playRound));
+const btnPiedra = document.querySelector('.piedra');
+const btnPapel = document.querySelector('.papel');
+const btnTijeras = document.querySelector('.tijeras');
