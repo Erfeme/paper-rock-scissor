@@ -3,8 +3,40 @@ let computerPoints = 0;
 let playerPoints = 0;
 
 const btn = document.querySelectorAll("button");        //Save all the Buttons in a Node
-const res = document.querySelector('.resultadoTexto')
+const res = document.querySelector('.resultadoTexto');
+const img1 = document.querySelector('.img1')
+const img2 = document.querySelector('.img2')
 
+changePlayerImage=playerSelection=>{
+
+    switch(playerSelection){
+        case 'rock':
+            img1.src = './images/rock.png'
+            break;
+        case'paper':
+            img1.src = './images/paper.png'
+            break;
+        case 'scissors':
+            img1.src = './images/scissors.png'
+             break;
+    }
+
+}
+
+changeComputerImage=computerSelection=>{
+    
+    switch(computerSelection){
+        case 'rock':
+            img2.src = './images/rock.png'
+            break;
+        case'paper':
+            img2.src = './images/paper.png'
+            break;
+        case 'scissors':
+            img2.src = './images/scissors.png'
+             break;
+    }
+}
 
 function getComputerChoice(){                           //This function returns the decision made by the computer
     let seleccion = Math.floor((Math.random() * 3));    //Generates a random number between 0 and 2
@@ -46,6 +78,8 @@ function playRound(selection){
 
     const playerSelection = selection.target.innerText.toLowerCase();
     const computerSelection = getComputerChoice();
+    changePlayerImage(playerSelection);
+    changeComputerImage(computerSelection);
     const winner= roundWinner(playerSelection,computerSelection);
     res.innerText = winner;
 
