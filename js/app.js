@@ -1,31 +1,20 @@
 let computerPoints = 0;
 let playerPoints = 0;
+const btn = document.querySelectorAll("button");        //Save all the Buttons in a Node
+const res = document.querySelector('.resultadoJugador')
 
-function getComputerChoice(){
-    let seleccion = Math.floor((Math.random() * 3));
 
-    items = ["piedra","papel","tijeras"];
-    return items[seleccion]
+function getComputerChoice(){                           //This function returns the decision made by the computer
+    let seleccion = Math.floor((Math.random() * 3));    //Generates a random number between 0 and 2
+
+    items = ["piedra","papel","tijeras"];               //Array containing the computer's options
+    return items[seleccion]                             //Take the random number and returns the option in that array's index
 }
 
-function playRound(selection){
-
-    selection.stopPropagation();
-
-    const playerSelection = selection.target.innerText.toLowerCase()
-
-    console.log(playerSelection);
+const roundWinner=(playerSelection,computerSelection)=>{
     
-    const computerSelection = getComputerChoice();
-    
-    if(playerSelection == "Piedra" && computerSelection == "piedra"){
-
-        return(
-        `Empate! la computadora ha seleccionado ${computerSelection}
-        y el jugador ha seleccionado ${playerSelection} 
-        \n Computadora ${computerPoints} Jugador ${playerPoints}
-        `);
-
+    if(playerSelection == "piedra" && computerSelection == "piedra"){
+        return(`Empate! la computadora ha seleccionado ${computerSelection}y el jugador ha seleccionado ${playerSelection}\n Computadora ${computerPoints} Jugador ${playerPoints}`);
     } else if(playerSelection == "piedra" && computerSelection == "tijeras"){
         playerPoints=+1;
         return(`Gana el jugador! la computadora ha seleccionado ${computerSelection} y el jugador ha seleccionado ${playerSelection} \n Computadora ${computerPoints} Jugador ${playerPoints}`);
@@ -51,24 +40,18 @@ function playRound(selection){
     }
 }
 
-function game(){
+function playRound(selection){
 
-    if (playerPoints > computerPoints){
-        return "The Player wins";
-    } else if(playerPoints<computerPoints){
-        return "The Computer wins";
-    } else if(playerPoints == computerPoints){
-        return "Tie"
-    }
-    playerPoints = 0;
-    computerPoints = 0;
+    const playerSelection = selection.target.innerText.toLowerCase();
+    const computerSelection = getComputerChoice();
+    const winner= roundWinner(playerSelection,computerSelection);
+    res.innerText = winner;
+    
 }
-
-const btn = document.querySelectorAll("button");        //Save all the Buttons in a Node
 
 btn.forEach(item=> {                                    //For each node element Do
     item.addEventListener('click',(e)=>{                //Add an Event Listener for a click on every button
         e.stopPropagation()                             //Don't compute clicks on other elements
-        playRound(e);                                   //Call the playRound Function
+        let result = playRound(e);                      //Call the playRound Function
     })
 });
