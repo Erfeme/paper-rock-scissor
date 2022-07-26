@@ -10,7 +10,9 @@ function getComputerChoice(){
 
 function playRound(selection){
 
-    const playerSelection = selection.target.innerText;
+    selection.stopPropagation();
+
+    const playerSelection = selection.target.innerText.toLowerCase()
 
     console.log(playerSelection);
     
@@ -62,9 +64,11 @@ function game(){
     computerPoints = 0;
 }
 
-const button = document.querySelectorAll('button');
+const btn = document.querySelectorAll("button");        //Save all the Buttons in a Node
 
-button.forEach(button => addEventListener('click',playRound));
-const btnPiedra = document.querySelector('.piedra');
-const btnPapel = document.querySelector('.papel');
-const btnTijeras = document.querySelector('.tijeras');
+btn.forEach(item=> {                                    //For each node element Do
+    item.addEventListener('click',(e)=>{                //Add an Event Listener for a click on every button
+        e.stopPropagation()                             //Don't compute clicks on other elements
+        playRound(e);                                   //Call the playRound Function
+    })
+});
