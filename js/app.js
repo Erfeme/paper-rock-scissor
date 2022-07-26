@@ -2,13 +2,13 @@ let computerPoints = 0;
 
 let playerPoints = 0;
 
-const btn = document.querySelectorAll(".action");        //Save all the Buttons in a Node
-const res = document.querySelector('.resultadoTexto');
-const img1 = document.querySelector('.img1');
-const img2 = document.querySelector('.img2');
-const playerPointsText = document.querySelector('.playerPoints');
-const computerPointsText = document.querySelector('.computerPoints');
-const reset = document.querySelector('.again');
+const btn = document.querySelectorAll(".action");                       //Save all the Buttons in a Node
+const res = document.querySelector('.resultadoTexto');                  //Saves the text with the result of each match
+const img1 = document.querySelector('.img1');                           //Saves the player selection Image
+const img2 = document.querySelector('.img2');                           //Saves the computer Selection Image
+const playerPointsText = document.querySelector('.playerPoints');       //Saves the text with the player Points
+const computerPointsText = document.querySelector('.computerPoints');   //Saves the text with the computer Points
+const reset = document.querySelector('.again');                         //Saves the reset button
 
 btn.forEach(item=> {                                    //For each node element Do
     item.addEventListener('click',(e)=>{                //Add an Event Listener for a click on every button
@@ -17,22 +17,22 @@ btn.forEach(item=> {                                    //For each node element 
     })
 });
 
-reset.addEventListener('click',(e)=>{
-    e.stopPropagation();
-    btn.forEach(item=>{
+reset.addEventListener('click',(e)=>{                   //Function to reset all the things to it's initial value
+    e.stopPropagation();                                //To get the right scope of the click
+    btn.forEach(item=>{                                 //Enable each button
         item.disabled = false;
     })
-    playerPoints = 0;
-        computerPoints = 0;
-        img1.src = "./images/prs.jpg"
+        playerPoints = 0;                               //Set player score to 0
+        computerPoints = 0;                             //Set Computer score to 0
+        img1.src = "./images/prs.jpg"                   //Set the image to the initial image
         img2.src = "./images/prs.jpg"
-        res.innerText = 'Who will win? Neurons or transistors? The first getting 5 points will earn the victory!'
+        res.innerText = 'Who will win? Neurons or transistors? The first getting 5 points will earn the victory!' //Set the text to its original state
         playerPointsText.innerText = 0;
         computerPointsText.innerText = 0;
-        reset.disabled = true;
+        reset.disabled = true;                          //Disable the reset button
 })
 
-changePlayerImage=playerSelection=>{
+changePlayerImage=playerSelection=>{                    //Function to change the player image to the one selected to play
 
     switch(playerSelection){
         case 'rock':
@@ -48,7 +48,7 @@ changePlayerImage=playerSelection=>{
 
 }
 
-changeComputerImage=computerSelection=>{
+changeComputerImage=computerSelection=>{                //Function to change the player image to the one selected to play
     
     switch(computerSelection){
         case 'rock':
@@ -63,14 +63,14 @@ changeComputerImage=computerSelection=>{
     }
 }
 
-getComputerChoice=()=>{                           //This function returns the decision made by the computer
+getComputerChoice=()=>{                                 //This function returns the decision made by the computer
     let seleccion = Math.floor((Math.random() * 3));    //Generates a random number between 0 and 2
 
-    items = ["rock","paper","scissors"];               //Array containing the computer's options
+    items = ["rock","paper","scissors"];                //Array containing the computer's options
     return items[seleccion]                             //Take the random number and returns the option in that array's index
 }
 
-roundWinner=(playerSelection,computerSelection)=>{
+roundWinner=(playerSelection,computerSelection)=>{      //Gets player and computer selections, it decides who won and gives points
     
     if(playerSelection == "rock" && computerSelection == "rock"){
         return'Tie!';
@@ -99,8 +99,8 @@ roundWinner=(playerSelection,computerSelection)=>{
     }
 }
 
-victory=()=>{
-
+victory=()=>{                                                       //When someone gets 5 points declares the winner and disables all the buttons
+                                                                    //But also enables the reset button
     if (playerPoints == 5){
         res.innerText = "The player has earned the Victory!";
         btn.forEach(item=>{
@@ -116,16 +116,16 @@ victory=()=>{
     }
 }
 
-playRound=selection=>{
+playRound=selection=>{                                                  //Full round flow
 
-    const playerSelection = selection.target.innerText.toLowerCase();
-    const computerSelection = getComputerChoice();
-    changePlayerImage(playerSelection);
-    changeComputerImage(computerSelection);
-    res.innerText = roundWinner(playerSelection,computerSelection);
-    playerPointsText.innerText = playerPoints;
-    computerPointsText.innerText = computerPoints;
-    victory();
+    const playerSelection = selection.target.innerText.toLowerCase();   //Get's the player's selection, from the clicked button
+    const computerSelection = getComputerChoice();                      //Get's the computer choice
+    changePlayerImage(playerSelection);                                 //Change both images
+    changeComputerImage(computerSelection);                             
+    res.innerText = roundWinner(playerSelection,computerSelection);     //Show the text of who won
+    playerPointsText.innerText = playerPoints;                          //Show player's score
+    computerPointsText.innerText = computerPoints;                      //Show computer's score
+    victory();                                                          //Decides if ther is a winner
     
 }
 
