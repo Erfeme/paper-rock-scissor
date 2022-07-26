@@ -10,23 +10,18 @@
 body{
     background-color: #CDB4DB;
     display:flex;
-    justify-content: center;;
+    justify-content: center;
 }
 
 .bodyApp{
     display:flex;
     flex-direction: column;
-    height:100vh;
     background-color:#FFC8DD;
+    height: 100%;
     width:800px;
 }
 
-.btn{
-    background-color:#A2D2FF;
-    padding: 30px;
-    border: 2px solid #BDE0FE;
-    border-radius:10px;
-}
+
 
 .title{
     margin: 30px 0;
@@ -35,4 +30,36 @@ body{
 
 .title h2{
     margin: 20px 0;
+}
+
+.resultadoImagenes{
+    display:flex;
+    justify-content: space-around;
+    margin-bottom: 30px;
+}
+
+.imgContainer img{
+    width:200px;
+}
+
+.resultado{
+    margin: 20px 0;
+    height:40px;
+}
+
+h3{
+    margin-top:20px;
+}
+
+.btnContenedor{
+    
+    margin:30px;
+}
+
+.btn{
+    background-color:#A2D2FF;
+    border: 2px solid #BDE0FE;
+    border-radius:10px;
+    padding:40px;
+    font-size: 35px;
 }

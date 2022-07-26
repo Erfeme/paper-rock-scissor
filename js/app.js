@@ -3,7 +3,7 @@ let computerPoints = 0;
 let playerPoints = 0;
 
 const btn = document.querySelectorAll("button");        //Save all the Buttons in a Node
-const res = document.querySelector('.resultadoJugador')
+const res = document.querySelector('.resultadoTexto')
 
 
 function getComputerChoice(){                           //This function returns the decision made by the computer
