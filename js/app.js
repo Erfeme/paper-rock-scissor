@@ -63,14 +63,14 @@ changeComputerImage=computerSelection=>{
     }
 }
 
-function getComputerChoice(){                           //This function returns the decision made by the computer
+getComputerChoice=()=>{                           //This function returns the decision made by the computer
     let seleccion = Math.floor((Math.random() * 3));    //Generates a random number between 0 and 2
 
     items = ["rock","paper","scissors"];               //Array containing the computer's options
     return items[seleccion]                             //Take the random number and returns the option in that array's index
 }
 
-const roundWinner=(playerSelection,computerSelection)=>{
+roundWinner=(playerSelection,computerSelection)=>{
     
     if(playerSelection == "rock" && computerSelection == "rock"){
         return'Tie!';
@@ -116,7 +116,7 @@ victory=()=>{
     }
 }
 
-function playRound(selection){
+playRound=selection=>{
 
     const playerSelection = selection.target.innerText.toLowerCase();
     const computerSelection = getComputerChoice();
