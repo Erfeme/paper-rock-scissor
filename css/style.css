@@ -1,3 +1,38 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding:0;
+    font-family:'Orbitron', sans-serif;
+    text-align:center;
+    
+}
+
 body{
-    background-color: white;
+    background-color: #CDB4DB;
+    display:flex;
+    justify-content: center;;
+}
+
+.bodyApp{
+    display:flex;
+    flex-direction: column;
+    height:100vh;
+    background-color:#FFC8DD;
+    width:800px;
+}
+
+.btn{
+    background-color:#A2D2FF;
+    padding: 30px;
+    border: 2px solid #BDE0FE;
+    border-radius:10px;
+}
+
+.title{
+    margin: 30px 0;
+    padding:20px;
+}
+
+.title h2{
+    margin: 20px 0;
 }
