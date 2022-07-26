@@ -22,20 +22,19 @@ body{
 }
 
 
-
 .title{
-    margin: 30px 0;
+    margin: 30px 0 0 0;
     padding:20px;
 }
 
 .title h2{
-    margin: 20px 0;
+    margin: 20px 0 0 0;
 }
 
 .resultadoImagenes{
     display:flex;
     justify-content: space-around;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
 }
 
 .imgContainer img{
@@ -49,7 +48,7 @@ body{
 }
 
 h3{
-    margin-top:20px;
+    margin: 20px 0;
 }
 
 .btnContenedor{
@@ -61,6 +60,6 @@ h3{
     background-color:#A2D2FF;
     border: 2px solid #BDE0FE;
     border-radius:10px;
-    padding:40px;
-    font-size: 35px;
+    padding:20px;
+    font-size: 30px;
 }

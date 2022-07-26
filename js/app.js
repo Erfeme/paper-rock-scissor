@@ -2,10 +2,35 @@ let computerPoints = 0;
 
 let playerPoints = 0;
 
-const btn = document.querySelectorAll("button");        //Save all the Buttons in a Node
+const btn = document.querySelectorAll(".action");        //Save all the Buttons in a Node
 const res = document.querySelector('.resultadoTexto');
-const img1 = document.querySelector('.img1')
-const img2 = document.querySelector('.img2')
+const img1 = document.querySelector('.img1');
+const img2 = document.querySelector('.img2');
+const playerPointsText = document.querySelector('.playerPoints');
+const computerPointsText = document.querySelector('.computerPoints');
+const reset = document.querySelector('.again');
+
+btn.forEach(item=> {                                    //For each node element Do
+    item.addEventListener('click',(e)=>{                //Add an Event Listener for a click on every button
+        e.stopPropagation();                            //Don't compute clicks on other elements
+        let result = playRound(e);                      //Call the playRound Function
+    })
+});
+
+reset.addEventListener('click',(e)=>{
+    e.stopPropagation();
+    btn.forEach(item=>{
+        item.disabled = false;
+    })
+    playerPoints = 0;
+        computerPoints = 0;
+        img1.src = "./images/prs.jpg"
+        img2.src = "./images/prs.jpg"
+        res.innerText = 'Who will win? Neurons or transistors? The first getting 5 points will earn the victory!'
+        playerPointsText.innerText = 0;
+        computerPointsText.innerText = 0;
+        reset.disabled = true;
+})
 
 changePlayerImage=playerSelection=>{
 
@@ -48,29 +73,46 @@ function getComputerChoice(){                           //This function returns 
 const roundWinner=(playerSelection,computerSelection)=>{
     
     if(playerSelection == "rock" && computerSelection == "rock"){
-        return(`Empate! la computadora ha seleccionado ${computerSelection}y el jugador ha seleccionado ${playerSelection}\n Computadora ${computerPoints} Jugador ${playerPoints}`);
+        return'Tie!';
     } else if(playerSelection == "rock" && computerSelection == "scissors"){
         playerPoints++;
-        return(`Gana el jugador! la computadora ha seleccionado ${computerSelection} y el jugador ha seleccionado ${playerSelection} \n Computadora ${computerPoints} Jugador ${playerPoints}`);
+        return'Player wins!'
     }else if(playerSelection == "rock" && computerSelection == "paper"){
         computerPoints++;
-        return(`Gana la computadora! la computadora ha seleccionado ${computerSelection} y el jugador ha seleccionado ${playerSelection} \n Computadora ${computerPoints} Jugador ${playerPoints}`);
+        return 'Computer wins!'
     }else if(playerSelection == "paper" && computerSelection == "rock"){
         playerPoints++;
-        return(`Gana el jugador! la computadora ha seleccionado ${computerSelection} y el jugador ha seleccionado ${playerSelection} \n Computadora ${computerPoints} Jugador ${playerPoints}`);
+        return 'Player wins!'
     }else if(playerSelection == "paper" && computerSelection == "paper"){
-        return(`Empate! la computadora ha seleccionado ${computerSelection} y el jugador ha seleccionado ${playerSelection} \n Computadora ${computerPoints} Jugador ${playerPoints}`);
+        return 'Tie!'
     }else if(playerSelection == "paper" && computerSelection == "scissors"){
         computerPoints++;
-        return(`Gana la computadora! la computadora ha seleccionado ${computerSelection} y el jugador ha seleccionado ${playerSelection} \n Computadora ${computerPoints} Jugador ${playerPoints}`);
+        return 'Computer wins!'
     }else if(playerSelection == "scissors" && computerSelection == "rock"){
         computerPoints ++;
-        return(`Gana la computadora! la computadora ha seleccionado ${computerSelection} y el jugador ha seleccionado ${playerSelection} \n Computadora ${computerPoints} Jugador ${playerPoints}`);
+        return 'Computer wins!'
     }else if(playerSelection == "scissors" && computerSelection == "paper"){
         playerPoints ++;
-        return(`Gana el jugador! la computadora ha seleccionado ${computerSelection} y el jugador ha seleccionado ${playerSelection} \n Computadora ${computerPoints} Jugador ${playerPoints}`);
+        return 'Player wins!'
     }else if(playerSelection == "scissors" && computerSelection == "scissors"){
-        return(`Empate! la computadora ha seleccionado ${computerSelection} y el jugador ha seleccionado ${playerSelection} \n Computadora ${computerPoints} Jugador ${playerPoints}`);
+        return 'Tie!'
+    }
+}
+
+victory=()=>{
+
+    if (playerPoints == 5){
+        res.innerText = "The player has earned the Victory!";
+        btn.forEach(item=>{
+            item.disabled = true;    
+        })
+        reset.disabled = false;
+    }else if(computerPoints == 5){
+        res.innerText = "Computer rises above human kind!";
+        btn.forEach(item=>{
+            item.disabled = true;    
+        })
+        reset.disabled = false;
     }
 }
 
@@ -80,25 +122,10 @@ function playRound(selection){
     const computerSelection = getComputerChoice();
     changePlayerImage(playerSelection);
     changeComputerImage(computerSelection);
-    const winner= roundWinner(playerSelection,computerSelection);
-    res.innerText = winner;
-
-    if (playerPoints == 5){
-        res.innerText = "El jugador ha resultado victorioso";
-        btn.forEach(item=>{
-            item.disabled = true;    
-        })
-    }else if(computerPoints == 5){
-        res.innerText = "La computadora ha mostrado su superioridad al humano";
-        btn.forEach(item=>{
-            item.disabled = true;    
-        })
-    }
+    res.innerText = roundWinner(playerSelection,computerSelection);
+    playerPointsText.innerText = playerPoints;
+    computerPointsText.innerText = computerPoints;
+    victory();
+    
 }
 
-btn.forEach(item=> {                                    //For each node element Do
-    item.addEventListener('click',(e)=>{                //Add an Event Listener for a click on every button
-        e.stopPropagation()                             //Don't compute clicks on other elements
-        let result = playRound(e);                      //Call the playRound Function
-    })
-});
